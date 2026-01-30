@@ -3,8 +3,7 @@
 
 - [ADMET properties prediction](#admet-properties-prediction)
   - [About](#about)
-  - [Usage](#usage)
-  - [App](#app)
+  - [Customized Usage](#customized-usage)
   - [Citation](#citation)
 
 `predictADMET` is a project to predict 5 different properties (membrane permeability, solubility, protein plasma binding, genotoxicity, cardiotoxicity) of molecules and get explanations (why a molecule is predicted to have a property).
@@ -25,35 +24,20 @@ and representations: `MACCSFp`, `PubchemFp`, `KRFp`, `molecular graphs`.
 
 More details and results available at:
 
-## Usage
+## Customized Usage
 
 Create conda environment and install packages:
-```sh
-conda create -n predictADMET python=3.8
-conda activate predictADMET
-pip install -r requirements.txt
+```bash
+conda env create -f env.yml
+conda activate admet_print
 ```
 
 Download data used in experiments from [link](https://drive.google.com/drive/u/0/folders/1NYHdDnOjMdqqBhDmRRRQT4mok3xtXUH2) or add your own data to the `data` directory.
 
-
 Run training:
-```sh
-# scheme
-python src/main.py -dataset dataset -data_type data_type -model model
-# example
-python src/main.py -dataset cardio -data_type klek -model rf
+```bash
+bash scripts/run.sh
 ```
-
-Meaning of files:
-- `*_keys.csv`/`*_keys_dict.pickle` - keys meaning for fingerprints
-- `*_idxs.csv` - idxs used for training (for models, with high variance)
-
-## App
-
-All developed tools can be used via the online platform available at:
-
-[![app](https://raw.githubusercontent.com/JamEwe/ADMET-PrInt/master/ADMET_prediction_app_screen.png)](https://admet.if-pan.krakow.pl)
 
 ## Citation
 

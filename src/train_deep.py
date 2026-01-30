@@ -280,6 +280,8 @@ def train_with_cv_fcnn(X, y, model_type, model_seed, data_seed, data_split_seed,
         tr_r2s.append(train_r2s)
         ts_r2s.append(test_r2s)
         # Save 
+        if not pathlib.Path('models').exists():
+            pathlib.Path('models').mkdir(parents=True, exist_ok=True)
         model_path = 'models/{}_{}_{}_{}.pth'.format(dataset, data_type, model_type,fold_1+1)
         torch.save([model.kwargs, model.state_dict()], model_path)
         # Eval
@@ -373,6 +375,8 @@ def train_with_cv_gcnn(X, y, model_type, model_seed, data_seed, data_split_seed,
         tr_r2s.append(train_r2s)
         ts_r2s.append(test_r2s)
         # Save 
+        if not pathlib.Path('models').exists():
+            pathlib.Path('models').mkdir(parents=True, exist_ok=True)
         model_path = 'models/{}_{}_{}_{}.pth'.format(dataset, data_type, model_type,fold_1+1)
         torch.save([model.kwargs, model.state_dict()], model_path)
         # Eval

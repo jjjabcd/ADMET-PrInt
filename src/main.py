@@ -3,6 +3,7 @@ Main file for pipeline
 
 """
 
+import os
 import pandas as pd
 import numpy as np
 import yaml
@@ -96,6 +97,8 @@ def main(args):
 
     # Set logger
     log_file_path = 'logs/{}-{}-{}-{:%Y-%m-%d-%H:%M}.log'.format(args.dataset, args.data_type, args.model, datetime.now())
+    if not os.path.exists('logs'):
+        os.makedirs('logs')
     open(log_file_path, 'w').close()
     logger.add(log_file_path, format='{time:YYYY-MM-DD at HH:mm:ss} | {level} | {message}')
     logger.info('Run {} model with {} dataset in {} format'.format(args.model, args.dataset, args.data_type))

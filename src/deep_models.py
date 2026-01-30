@@ -101,7 +101,7 @@ class GCNN(torch.nn.Module):
         super(GCNN, self).__init__()
         self.kwargs = {'n_layers': n_layers, 'hidden_size': hidden_size,'dp': dp}
         self.n_layers = n_layers
-        torch.manual_seed(42)
+
         self.final_conv_acts = None
         self.final_conv_grads = None
 
@@ -252,7 +252,7 @@ class GraphDataset(InMemoryDataset):
         data = [Data(
             x=torch.FloatTensor(x),
             edge_index=torch.LongTensor(edge_index),
-            y = y) for x, edge_index, y in zip(x_g,edge_index_g,self.dataset[1])
+            y=torch.FloatTensor([y])) for x, edge_index, y in zip(x_g,edge_index_g,self.dataset[1])
         ]
 
         torch.save(data, self.raw_paths[0])

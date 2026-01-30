@@ -9,6 +9,7 @@ from shallow_models import get_model
 from eval import evaluate
 from opt import objective
 from seed import seedEverything
+import os
 
 def train_with_cv_shallow(X, y, model_type, model_seed, data_seed, data_split_seed, n_trials, dataset, data_type):
     """Trains model with hyperparameter optimization
@@ -63,6 +64,8 @@ def train_with_cv_shallow(X, y, model_type, model_seed, data_seed, data_split_se
         model = get_model(model_type, best_params)
         model.fit(train_x, train_y)
         # Save 
+        if not os.path.exists('models'):
+            os.makedirs('models')
         model_path = 'models/{}_{}_{}_{}.pkl'.format(dataset, data_type, model_type,fold_1+1)
         pickle.dump(model, open(model_path, 'wb'))
         # Eval
